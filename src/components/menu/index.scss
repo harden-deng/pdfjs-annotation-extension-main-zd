@@ -1,0 +1,116 @@
+.CustomAnnotationMenu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    display: none;
+    width: max-content;
+    background-color: var(--doorhanger-bg-color);
+    box-shadow:
+        0 1px 5px var(--doorhanger-border-color),
+        0 0 0 1px var(--doorhanger-border-color);
+    border: var(--toolbar-border-color);
+    border-radius: 6px;
+    font: message-box;
+    padding: 4px; // 增加基础内边距避免按钮贴边
+
+    &.show {
+        display: block;
+    }
+
+    &.hide {
+        display: none;
+    }
+
+    .styleContainer {
+        .colorPalette {
+            display: flex;
+            flex-wrap: wrap; // 允许换行
+            gap: 8px 10px; // 行间距8px，列间距10px
+            margin: 8px;
+            max-width: calc((22px + 10px) * 5); // 控制一行最多放5个，考虑cell宽度和间距
+
+            .cell {
+                cursor: pointer;
+                width: 22px;
+                height: 22px;
+                border-radius: 100px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border: 1px solid transparent;
+                span {
+                    width: 12px;
+                    height: 12px;
+                    display: inline-block;
+                    border-radius: 100px;
+                }
+            }
+            .cell:hover {
+                border: 1px solid var(--button-hover-color);
+            }
+
+            .cell.active {
+                border: 1px solid #bbb;
+            }
+        }
+        .prototypeSetting {
+            margin: 8px;
+            .ant-form-item{
+                margin-bottom: 8px;
+            }
+            .ant-form-item-label{
+                padding: 0;
+                label {
+                        color: var(--main-color);
+                }
+            }
+            .ant-slider:hover {
+                .ant-slider-rail {
+                    background-color: var(--toolbar-border-color);
+                }
+            }
+            .ant-slider-rail {
+                background-color: var(--toolbar-border-color);
+            }
+        }
+    }
+
+    .buttons {
+        display: flex;
+        gap: 4px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        user-select: none;
+
+        li {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px; // ✅ 固定宽度（可按实际图标宽度调整）
+            height: 32px;
+            padding: 0; // ✅ 去掉额外 padding，保证统一尺寸
+            color: var(--main-color);
+            border: 1px solid transparent;
+            border-radius: 4px;
+            cursor: pointer;
+            transition:
+                background-color 0.2s ease,
+                opacity 0.2s ease;
+
+            .icon {
+                font-size: 16px;
+                line-height: 1;
+            }
+
+            &:hover {
+                background-color: var(--button-hover-color);
+            }
+
+            &:active {
+                background-color: var(--button-hover-color-active, #ccc);
+            }
+        }
+    }
+}

@@ -1,0 +1,132 @@
+{
+    "anno": "Comment",
+    "annotations": {
+        "select": "Select",
+        "highlight": "Highlight",
+        "strikeout": "Strikeout",
+        "underline": "Underline",
+        "rectangle": "Rectangle",
+        "circle": "Circle",
+        "freehand": "Free Hand",
+        "freeHighlight": "Free Highlight",
+        "freeText": "Text",
+        "signature": "Signature",
+        "stamp": "Stamp",
+        "note": "Note",
+        "arrow": "Arrow",
+        "cloud": "Cloud"
+    },
+    "toolbar": {
+        "buttons": {
+            "createSignature": "Create signature",
+            "uploadImage": "Upload Image",
+            "createStamp": "Create Stamp"
+        },
+        "message": {
+            "selectPosition": "Please select a position",
+            "signatureArea": "Signature",
+            "uploadArea": "Upload Area",
+            "uploadHint": "Click to upload or drag and drop to here {{format}}, maxSize {{maxSize}}"
+        }
+    },
+    "editor": {
+        "text": {
+            "startTyping": "Start typing…"
+        },
+        "stamp": {
+            "stampText": "Stamp Text",
+            "fontStyle": "Font Style",
+            "fontFamily": "Font Family",
+            "textColor": "Text Color",
+            "backgroundColor": "Background Color",
+            "borderColor": "Border Color",
+            "borderStyle": "Border Style",
+            "timestampText": "Timestamp Text",
+            "customTimestamp": "Custom Text",
+            "username": "Username",
+            "date": "Date",
+            "time": "Time",
+            "dateFormat": "Date Format",
+            "solid": "Solid",
+            "dashed": "Dashed",
+            "defaultText": "Draft"
+        }
+    },
+    "normal": {
+        "ok": "OK",
+        "cancel": "Cancel",
+        "clear": "Clear",
+        "fileSizeLimit": "The file size exceeds the {{value}} limit",
+        "deleteConfirm": "Are you sure you want to delete?",
+        "yes": "Yes",
+        "no": "No",
+        "example": "e.g. ",
+        "color": "Color",
+        "export": "Export",
+        "save": "Save",
+        "reply": "Reply",
+        "edit": "Edit",
+        "delete": "Delete",
+        "confirm": "Confirm",
+        "unknownUser": "Unknown User",
+        "processing": "Processing, please wait...",
+        "filter": "Filter",
+        "author": "Author",
+        "type": "Type",
+        "selectAll": "Select All",
+        "more": "More",
+        "draw": "Draw",
+        "enter": "Enter",
+        "upload": "Upload",
+        "default": "Default",
+        "custom": "Custom",
+        "strokeWidth": "Stroke",
+        "opacity": "Opacity"
+    },
+    "comment": {
+        "total": "Comment {{value}}",
+        "page": "Page {{value}}",
+        "status": {
+            "accepted": "Accepted",
+            "rejected": "Rejected",
+            "cancelled": "Cancelled",
+            "completed": "Completed",
+            "none": "None",
+            "closed": "Closed"
+        },
+        "statusText": "Set Status: {{value}}"
+    },
+    "pdf": {
+        "generationSuccess": "File has been successfully generated and downloaded"
+    },
+    "dateFormat": {
+        "full": "{{month}}/{{day}}/{{year}} {{hour}}:{{minute}}",
+        "dayMonth": "{{month}}/{{day}}",
+        "dayMonthYear": "{{month}}/{{day}}/{{year}}"
+    },
+    "save": {
+        "start": "Saving...",
+        "success": "Saved successfully!",
+        "fail": "Failed to save. {{value}}",
+        "noPostUrl": "{{value}} not found."
+    },
+    "load": {
+        "fail": "Annotation Data Load Fail: {{value}}"
+    },
+    "export": {
+        "fields": {
+            "id": "ID",
+            "page": "Page",
+            "author": "Author",
+            "date": "Date",
+            "content": "Content",
+            "status": "Status",
+            "annotationType": "Annotation Type",
+            "recordType": "Type"
+        },
+        "recordType": {
+            "annotation": "Annotation",
+            "reply": "Reply"
+        }
+    }
+}

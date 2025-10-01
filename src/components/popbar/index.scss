@@ -1,0 +1,55 @@
+.CustomPopbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    display: none;
+    width: max-content;
+    background-color: var(--doorhanger-bg-color);
+    box-shadow:
+        0 1px 5px var(--doorhanger-border-color),
+        0 0 0 1px var(--doorhanger-border-color);
+    border: var(--toolbar-border-color);
+    border-radius: 6px;
+    font: message-box;
+    padding: 4px; // 增加基础内边距避免按钮贴边
+    &.show {
+        display: block;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 4px;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        user-select: none;
+
+        li {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px; // ✅ 固定宽度（可按实际图标宽度调整）
+            height: 32px;
+            padding: 0;
+            border: 1px solid transparent;
+            color: var(--main-color);
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+
+            .icon {
+                font-size: 14px;
+                line-height: 1;
+            }
+
+            &:hover {
+                background-color: var(--button-hover-color);
+            }
+
+            &:active {
+                background-color: var(--button-hover-color-active, #ccc);
+            }
+        }
+    }
+}

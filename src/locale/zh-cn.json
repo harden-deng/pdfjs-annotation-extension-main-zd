@@ -1,0 +1,133 @@
+{
+    "anno": "批注",
+    "annotations": {
+        "see": "批注模式",
+        "select": "浏览模式",
+        "highlight": "高亮",
+        "strikeout": "删除线",
+        "underline": "下划线",
+        "rectangle": "矩形",
+        "circle": "圆形",
+        "freehand": "自由绘制",
+        "freeHighlight": "自由高亮",
+        "freeText": "文字",
+        "signature": "签名",
+        "stamp": "盖章",
+        "note": "注解",
+        "arrow": "箭头",
+        "cloud": "云线"
+    },
+    "toolbar": {
+        "buttons": {
+            "createSignature": "创建签名",
+            "uploadImages": "上传图片",
+            "createStamp": "创建印章"
+        },
+        "message": {
+            "selectPosition": "请选择放置位置",
+            "signatureArea": "签名处",
+            "uploadArea": "上传区域",
+            "uploadHint": "点击上传或请将图片拖拽到此处，支持格式{{format}}, 最大 {{maxSize}}"
+        }
+    },
+    "editor": {
+        "text": {
+            "startTyping": "开始输入..."
+        },
+        "stamp": {
+            "stampText": "印章内容",
+            "fontStyle": "字体样式",
+            "fontFamily": "字体",
+            "textColor": "文字颜色",
+            "backgroundColor": "背景颜色",
+            "borderColor": "边框颜色",
+            "borderStyle": "边框样式",
+            "timestampText": "时间戳",
+            "customTimestamp": "自定义",
+            "username": "用户名",
+            "date": "日期",
+            "time": "时间",
+            "dateFormat": "日期格式",
+            "solid": "实线",
+            "dashed": "虚线",
+            "defaultText": "草稿"
+        }
+    },
+    "normal": {
+        "ok": "确定",
+        "cancel": "取消",
+        "clear": "清空",
+        "fileSizeLimit": "文件大小超出 {{value}} 限制",
+        "deleteConfirm": "是否删除",
+        "yes": "是",
+        "no": "否",
+        "example": "例如：",
+        "color": "颜色",
+        "export": "导出",
+        "save": "保存",
+        "reply": "添加批注",
+        "edit": "编辑",
+        "delete": "删除",
+        "confirm": "确认",
+        "unknownUser": "不具名用户",
+        "processing": "处理中，请稍候...",
+        "filter": "过滤",
+        "author": "作者",
+        "type": "类型",
+        "selectAll": "全选",
+        "more": "更多",
+        "draw": "绘制",
+        "enter": "输入",
+        "upload": "上传",
+        "default": "默认",
+        "custom": "自定义",
+        "strokeWidth": "笔触宽度",
+        "opacity": "透明度"
+    },
+    "comment": {
+        "total": " {{value}} 条批注",
+        "page": "第{{value}}页",
+        "status": {
+            "accepted": "接受",
+            "rejected": "拒绝",
+            "cancelled": "取消",
+            "completed": "完成",
+            "none": "无",
+            "closed": "关闭"
+        },
+        "statusText": "将状态设置为 “{{value}}”"
+    },
+    "pdf": {
+        "generationSuccess": "文件已生成！"
+    },
+    "dateFormat": {
+        "full": "{{year}}-{{month}}-{{day}} {{hour}}:{{minute}}",
+        "dayMonth": "{{month}}-{{day}}",
+        "dayMonthYear": "{{year}}-{{month}}-{{day}}"
+    },
+    "save": {
+        "start": "正在保存...",
+        "success": "保存成功！",
+        "fail": "保存失败，错误代码： {{value}}",
+        "noPostUrl": "未找到参数: {{value}}"
+    },
+    "load": {
+        "fail": "外部批注加载失败，{{value}}"
+    },
+    "export": {
+        "fields": {
+            "id": "ID",
+            "page": "页码",
+            "author": "用户",
+            "date": "日期",
+            "content": "内容",
+            "status": "状态",
+            "annotationType": "批注类型",
+            "recordType": "类型"
+        },
+        "recordType": {
+            "annotation": "批注",
+            "reply": "回复"
+        }
+    }
+}

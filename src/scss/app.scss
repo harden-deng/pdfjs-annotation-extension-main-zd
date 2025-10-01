@@ -1,0 +1,43 @@
+.PdfjsAnnotationExtension {
+    .toolbar {
+        z-index: 99;
+    }
+    .textLayer {
+        z-index: 9 !important;
+    }
+    #viewerContainer {
+        top: 107px !important; //deng 2025-09-26
+        right: 330px;
+    }
+    #sidebarContainer {
+        top: 107px !important;
+    }
+    #toolbarContainer {
+        height: 107px;
+        // height: 32px; //deng 2025-09-26
+    }
+    .ant-message {
+        z-index: 9999999;
+    }
+    .ant-modal-mask {
+        backdrop-filter: blur(8px);
+    }
+}
+.PdfjsAnnotationExtension_Comment_hidden {
+    #viewerContainer {
+        right: 0 !important;
+    }
+}
+.PdfjsAnnotationExtension_scalechanging {
+    .PdfjsAnnotationExtension_painter_wrapper {
+        display: none;
+    }
+}
+.pdfPresentationMode {
+    .PdfjsAnnotationExtension_painter_wrapper {
+        display: block;
+    }
+}
+#print {
+    display: none; //deng 2025-09-26
+}
