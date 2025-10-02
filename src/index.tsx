@@ -85,7 +85,7 @@ class PdfjsAnnotationExtension {
         };
         console.log("初始化应用选项---->",this.appOptions);
         // 处理地址栏参数
-        this.parseHashParams()
+        // this.parseHashParams()  目前关闭，用配置文件代替
         // 创建画笔实例
         this.painter = new Painter({
             userName: this.getOption(HASH_PARAMS_USERNAME),
@@ -96,7 +96,7 @@ class PdfjsAnnotationExtension {
                 // 通过当前引用调用工具栏的activeAnnotation方法
                 // 并传入注释定义数组的第一个元素作为参数
                 console.log('setDefaultMode-问问-1--------------->', annotationDefinitions[0],annotationDefinitions)
-                this.customToolbarRef.current.activeAnnotation(null)
+                this.customToolbarRef.current.activeAnnotation(annotationDefinitions[1])
             },
             onWebSelectionSelected: range => {
                 console.log('onWebSelectionSelected----问问-2------------>', range)
@@ -326,9 +326,9 @@ class PdfjsAnnotationExtension {
         if (this.config.user?.defaultEditorActive) {
             this.setOption(HASH_PARAMS_DEFAULT_EDITOR_ACTIVE, this.config.user.defaultEditorActive);
         }
-        if (this.config.user?.defaultSidebarOpen !== undefined) {
-            this.setOption(HASH_PARAMS_DEFAULT_SIDEBAR_OPEN, this.config.user.defaultSidebarOpen.toString());
-        }
+        // if (this.config.user?.defaultSidebarOpen !== undefined) {
+        //     this.setOption(HASH_PARAMS_DEFAULT_SIDEBAR_OPEN, this.config.user.defaultSidebarOpen.toString());
+        // }
     }
 
     /**

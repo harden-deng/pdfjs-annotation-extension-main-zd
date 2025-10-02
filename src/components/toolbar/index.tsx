@@ -80,11 +80,11 @@ const CustomToolbar = forwardRef<CustomToolbarRef, CustomToolbarProps>(function 
 
     const handleAnnotationClick = (annotation: IAnnotationType | null) => {
         console.log('handleAnnotationClick----------------->', annotation)
-        if(annotation?.type === AnnotationType.SEE){
-            setCurrentAnnotation(null);
-            setDataTransfer(null) // 非签名类型时清空 dataTransfer
-            return
-        }
+        // if(annotation?.type === AnnotationType.SEE){
+        //     setCurrentAnnotation(null);
+        //     setDataTransfer(null) // 非签名类型时清空 dataTransfer
+        //     return
+        // }
         setCurrentAnnotation(annotation)
         if (annotation?.type !== AnnotationType.SIGNATURE) {
             setDataTransfer(null) // 非签名类型时清空 dataTransfer
@@ -138,9 +138,15 @@ const CustomToolbar = forwardRef<CustomToolbarRef, CustomToolbarProps>(function 
     // })
     const buttons = annotations.map((annotation, index) => {
         const isSelected = annotation.type === selectedType
-
-        const commonProps = {
-            className: isSelected || annotation.type === AnnotationType.SEE ? 'selected' : ''
+        console.log('isSelected----------------->', isSelected,selectedType)
+        const commonProps: any = {
+            className: ''
+        }
+        if(annotation.type === selectedType){
+            commonProps.className = 'selected'
+        }
+        if(annotation.type === AnnotationType.SEE && selectedType == undefined){
+            commonProps.className = 'selected'
         }
         switch (annotation.type) {
             case AnnotationType.STAMP:   //盖章批注
@@ -156,7 +162,19 @@ const CustomToolbar = forwardRef<CustomToolbarRef, CustomToolbarProps>(function 
                         <SignatureTool annotation={annotation} onAdd={signatureDataUrl => handleAdd(signatureDataUrl, annotation)} />
                     </li>
                 )
-
+            case AnnotationType.SEE:   //查看批注
+                return (
+                    <li
+                        title={t(`annotations.${annotation.name}`)}
+                        key={index}
+                        {...commonProps}
+                        onClick={() => handleAnnotationClick(null)}
+                    >
+                        <div className="icon">{annotation.icon}</div>
+                        <div className="name">{t(`annotations.${annotation.name}`)}</div>
+                    </li>
+                    
+                )
             default:
                 return (
                     <li

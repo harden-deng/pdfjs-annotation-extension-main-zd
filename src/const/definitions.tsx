@@ -180,19 +180,18 @@ export interface IAnnotationStore {
 // 批注类型定义数组
 // 用于描述所有支持的批注类型及其属性
 export const annotationDefinitions: IAnnotationType[] = [ 
-    {
-        name: 'select', // 批注名称
-        type: AnnotationType.SELECT, // 批注类型
+     {
+        name: 'see', // 浏览批注名称
+        type: AnnotationType.SEE, // 批注类型
         pdfjsEditorType: PdfjsAnnotationEditorType.NONE, // 对应的 PDF.js 批注类型
         pdfjsAnnotationType: PdfjsAnnotationType.NONE,
         isOnce: true, // 是否只绘制一次
         resizable: false,
         draggable: false,
         icon: <SelectIcon />, // 图标
-    },
-    {
-        name: 'see', // 浏览批注名称
-        type: AnnotationType.SEE, // 批注类型
+    }, {
+        name: 'select', // 批注名称
+        type: AnnotationType.SELECT, // 批注类型
         pdfjsEditorType: PdfjsAnnotationEditorType.NONE, // 对应的 PDF.js 批注类型
         pdfjsAnnotationType: PdfjsAnnotationType.NONE,
         isOnce: true, // 是否只绘制一次
