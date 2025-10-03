@@ -76,8 +76,7 @@ class PdfjsAnnotationExtension {
         // 加载多语言
         initializeI18n(this.PDFJS_PDFViewerApplication.l10n.getLanguage())
      
-        // 检查预配置（在初始化应用选项之前）
-        this.checkPreConfiguration();
+      
 
         // 初始化应用选项
         this.appOptions = {
@@ -87,11 +86,12 @@ class PdfjsAnnotationExtension {
             [HASH_PARAMS_DEFAULT_EDITOR_ACTIVE]: defaultOptions.setting.HASH_PARAMS_DEFAULT_EDITOR_ACTIVE,
             [HASH_PARAMS_DEFAULT_SIDEBAR_OPEN]: defaultOptions.setting.HASH_PARAMS_DEFAULT_SIDEBAR_OPEN,
         };
-
+        // 检查预配置（在初始化应用选项之前）
+        this.checkPreConfiguration();
          // 如果有预配置的用户名，则覆盖默认值
-        if (this.config.user?.username) {
-            this.appOptions[HASH_PARAMS_USERNAME] = this.config.user.username
-        }
+        // if (this.config.user?.username) {
+        //     this.appOptions[HASH_PARAMS_USERNAME] = this.config.user.username
+        // }
 
         console.log("初始化应用选项---->",this.appOptions);
         // 处理地址栏参数
@@ -106,7 +106,7 @@ class PdfjsAnnotationExtension {
                 // 通过当前引用调用工具栏的activeAnnotation方法
                 // 并传入注释定义数组的第一个元素作为参数
                 console.log('setDefaultMode-问问-1--------------->', annotationDefinitions[0],annotationDefinitions)
-                this.customToolbarRef.current.activeAnnotation(annotationDefinitions[1])
+                this.customToolbarRef.current.activeAnnotation(annotationDefinitions[0])
             },
             onWebSelectionSelected: range => {
                 console.log('onWebSelectionSelected----问问-2------------>', range)
@@ -344,19 +344,19 @@ class PdfjsAnnotationExtension {
     /**
      * 检查预配置
      */
-    // private checkPreConfiguration(): void {
-    //     // 检查是否有全局配置
-    //     if ((window as any).pdfjsAnnotationConfig) {
-    //         this.configure((window as any).pdfjsAnnotationConfig);
-    //     }
-    // }
     private checkPreConfiguration(): void {
         // 检查是否有全局配置
         if ((window as any).pdfjsAnnotationConfig) {
-            this.config = { ...this.config, ...(window as any).pdfjsAnnotationConfig };
-            this.isConfigured = true;
+            this.configure((window as any).pdfjsAnnotationConfig);
         }
     }
+    // private checkPreConfiguration(): void {
+    //     // 检查是否有全局配置
+    //     if ((window as any).pdfjsAnnotationConfig) {
+    //         this.config = { ...this.config, ...(window as any).pdfjsAnnotationConfig };
+    //         this.isConfigured = true;
+    //     }
+    // }
     //-----------------------------------------------------------------------------------end
     //-设置数据变化钩子----------------------------------------------------------------------------------srat
         /**

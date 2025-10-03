@@ -100,7 +100,7 @@ const defaultOptions = {
         ],
         HASH_PARAMS_GET_URL: '', // 默认 GET URL
         HASH_PARAMS_POST_URL: '', // 默认 POST URL
-        HASH_PARAMS_DEFAULT_EDITOR_ACTIVE: 'false', // 默认激活的编辑工具 select、 circle ...
+        HASH_PARAMS_DEFAULT_EDITOR_ACTIVE: 'select', // 默认激活的编辑工具 select、 circle ...
         HASH_PARAMS_DEFAULT_SIDEBAR_OPEN: 'true', // 默认侧边栏打开
     }
 }
