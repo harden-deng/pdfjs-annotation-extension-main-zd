@@ -75,6 +75,10 @@ class PdfjsAnnotationExtension {
         this.customCommentRef = createRef<CustomCommentRef>()
         // 加载多语言
         initializeI18n(this.PDFJS_PDFViewerApplication.l10n.getLanguage())
+     
+        // 检查预配置（在初始化应用选项之前）
+        this.checkPreConfiguration();
+
         // 初始化应用选项
         this.appOptions = {
             [HASH_PARAMS_USERNAME]: i18n.t('normal.unknownUser'), // 默认用户名,
@@ -83,6 +87,12 @@ class PdfjsAnnotationExtension {
             [HASH_PARAMS_DEFAULT_EDITOR_ACTIVE]: defaultOptions.setting.HASH_PARAMS_DEFAULT_EDITOR_ACTIVE,
             [HASH_PARAMS_DEFAULT_SIDEBAR_OPEN]: defaultOptions.setting.HASH_PARAMS_DEFAULT_SIDEBAR_OPEN,
         };
+
+         // 如果有预配置的用户名，则覆盖默认值
+        if (this.config.user?.username) {
+            this.appOptions[HASH_PARAMS_USERNAME] = this.config.user.username
+        }
+
         console.log("初始化应用选项---->",this.appOptions);
         // 处理地址栏参数
         // this.parseHashParams()  目前关闭，用配置文件代替
@@ -334,10 +344,17 @@ class PdfjsAnnotationExtension {
     /**
      * 检查预配置
      */
+    // private checkPreConfiguration(): void {
+    //     // 检查是否有全局配置
+    //     if ((window as any).pdfjsAnnotationConfig) {
+    //         this.configure((window as any).pdfjsAnnotationConfig);
+    //     }
+    // }
     private checkPreConfiguration(): void {
         // 检查是否有全局配置
         if ((window as any).pdfjsAnnotationConfig) {
-            this.configure((window as any).pdfjsAnnotationConfig);
+            this.config = { ...this.config, ...(window as any).pdfjsAnnotationConfig };
+            this.isConfigured = true;
         }
     }
     //-----------------------------------------------------------------------------------end
@@ -557,6 +574,7 @@ class PdfjsAnnotationExtension {
      */
     private init(): void {
         this.addCustomStyle()
+        console.log('init来了---ee11111111111111111111-->',this.config)
         this.bindPdfjsEvents()
         this.renderToolbar()
         this.renderPopBar()

@@ -30,6 +30,36 @@ See https://github.com/adobe-type-tools/cmap-resources
 
   <!-- This snippet is used in production (included from viewer.html) -->
   <link rel="resource" type="application/l10n" href="locale/locale.json">
+  <script>
+    // // 方式1: 通过全局配置对象
+    // window.pdfjsAnnotationConfig = {
+    //     pdf: {
+    //         url: '/secure-pdfs/document.pdf', // 安全的相对路径
+    //         allowUrlParameter: false // 禁止 URL 参数覆盖
+    //     },
+    //     annotations: {
+    //         getUrl: '/api/annotations/get',
+    //         postUrl: '/api/annotations/save',
+    //         autoLoad: true
+    //     },
+    //     user: {
+    //         username: '管理员',
+    //         defaultEditorActive: 'select',
+    //         defaultSidebarOpen: true
+    //     },
+    //     security: {
+    //         allowedDomains: ['localhost', 'yourdomain.com'],
+    //         maxFileSize: 50 * 1024 * 1024, // 50MB
+    //         allowedFileTypes: ['application/pdf']
+    //     }
+    // };
+       // 方式2: 通过全局配置对象
+       window.pdfjsAnnotationConfig = {
+        user: {
+            username: '管理员',
+        }
+      };
+</script>
   <script src="../build/pdf.mjs" type="module"></script>
 
   <link rel="stylesheet" href="viewer.css">
@@ -40,7 +70,7 @@ See https://github.com/adobe-type-tools/cmap-resources
     console.log('pdfjs-annotation-extension.js11111111111');
     document.addEventListener('DOMContentLoaded', async () => {
       const extension = window.pdfjsAnnotationExtensionInstance;
-      console.log('extension1111222221111111', extension);
+      console.log('eeeeeextension1111222221111111', extension);
       // 配置扩展
       extension.configure({
         pdf: {
@@ -60,7 +90,6 @@ See https://github.com/adobe-type-tools/cmap-resources
           maxFileSize: 50 * 1024 * 1024
         }
       });
-      extension.painter.userName = "当前用户"
       // 动态加载 PDF
       try {
         await extension.loadPdf('text.pdf');
