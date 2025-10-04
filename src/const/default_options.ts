@@ -85,7 +85,7 @@ const defaultOptions = {
         OPACITY: 1, // 默认不透明度
         MAX_CURSOR_SIZE: 96, // 鼠标指针图片最大宽度/高度
         MAX_UPLOAD_IMAGE_SIZE: 800, // 上传图片最大宽度/高度, 大于这个会被等比压缩
-        SAVE_BUTTON: true, // 保存按钮
+        SAVE_BUTTON: false, // 保存按钮
         EXPORT_PDF: true, // 导出pdf
         EXPORT_EXCEL: true, // 导出excel
         LOAD_PDF_ANNOTATION: true, // 是否加载 pdf 原有批注
@@ -100,7 +100,7 @@ const defaultOptions = {
         ],
         HASH_PARAMS_GET_URL: '', // 默认 GET URL
         HASH_PARAMS_POST_URL: '', // 默认 POST URL
-        HASH_PARAMS_DEFAULT_EDITOR_ACTIVE: 'false', // 默认激活的编辑工具 select、 circle ...
+        HASH_PARAMS_DEFAULT_EDITOR_ACTIVE: 'select', // 默认激活的编辑工具 select、 circle ...
         HASH_PARAMS_DEFAULT_SIDEBAR_OPEN: 'true', // 默认侧边栏打开
     }
 }
