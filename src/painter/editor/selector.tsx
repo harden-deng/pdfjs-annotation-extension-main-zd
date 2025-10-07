@@ -73,8 +73,10 @@ export class Selector {
      */
     private bindStageEvents(konvaStage: Konva.Stage): void {
         konvaStage.on('click tap', e => {
+            console.log('绑定 Konva Stage上的全局点击事件--0000---》',e)
             if (e.target !== konvaStage) return
-            this.clearTransformers()
+            console.log('绑定 Konva Stage上的全局点击事件--11111111--》',e)
+            this.clearTransformers('4')
         })
     }
 
@@ -153,25 +155,33 @@ export class Selector {
                     cancelText: i18n.t('normal.no'),
                     onOk: () => {
                         this.onDelete(this.currentTransformerId)
-                        this.clearTransformers()
+                        this.clearTransformers('6')
                     }
                 })
             })
+            console.log('为给定形状绑定点击、鼠标悬停和鼠标离开事件--111---》',shape);
         }
 
 
         shape.on('pointerclick', e => {
+            console.log('为给定形状绑定点击、鼠标悬停和鼠标离开事件--鼠标点击222---》',shape)
             if (e.evt.button === 0) {
+                console.log('为给定形状绑定点击、鼠标悬停和鼠标离开事件--鼠标点击222-1--》',e.evt.button)
                 this.handleShapeClick(shape, konvaStage, true)
             }
         })
         shape.on('mouseover', e => {
+            console.log('为给定形状绑定点击、鼠标悬停和鼠标离开事件--鼠标移入333---》',shape)
             if (e.evt.button === 0) {
+                console.log('为给定形状绑定点击、鼠标悬停和鼠标离开事件--鼠标移入333-1--》',e.evt.button)
+                this.handleShapeClick(shape, konvaStage, true)
                 this.handleShapeMouseover()
             }
         })
         shape.on('mouseout', e => {
+            console.log('为给定形状绑定点击、鼠标悬停和鼠标离开事件--鼠标移出444---》',shape)
             if (e.evt.button === 0) {
+                console.log('为给定形状绑定点击、鼠标悬停和鼠标离开事件--鼠标移出444-1--》',e.evt.button)
                 this.handleShapeMouseout()
             }
         })
@@ -194,7 +204,7 @@ export class Selector {
         const group = shape.findAncestor(`.${SHAPE_GROUP_NAME}`) as Konva.Group
 
         if (!group) return
-        this.clearTransformers() // 清除之前的变换器
+        this.clearTransformers('5') // 清除之前的变换器
         this.createTransformer(group, konvaStage, !isClick)
         const selectorRect = this.transformerStore.get(group.id()).getClientRect()
         this.onSelected(group.id(), isClick, selectorRect)
@@ -398,7 +408,7 @@ export class Selector {
     /**
      * 清除所有变换器。
      */
-    private clearTransformers(): void {
+    private clearTransformers(val:any): void {
         this.toggleCursorStyle(false)
         this.transformerStore.forEach(transformer => {
             if (transformer) {
@@ -412,7 +422,7 @@ export class Selector {
         })
         this.transformerStore.clear()
         this.currentTransformerId = null
-        this.onCancel('4',false)
+        this.onCancel(val,false)
     }
 
     /**
@@ -465,7 +475,7 @@ export class Selector {
      * 清除选择器的所有状态和事件。
      */
     public clear(): void {
-        this.clearTransformers()
+        this.clearTransformers('6')
         this.konvaCanvasStore.forEach(konvaCanvas => {
             const { konvaStage } = konvaCanvas
             const pageGroups = this.getPageShapeGroups(konvaStage)
@@ -500,6 +510,6 @@ export class Selector {
     }
 
     public delete() {
-        this.clearTransformers()
+        this.clearTransformers('6')
     }
 }

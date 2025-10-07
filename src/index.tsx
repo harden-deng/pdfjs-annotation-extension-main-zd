@@ -146,6 +146,9 @@ class PdfjsAnnotationExtension {
                 console.log('onAnnotationChanging------问问---7-------->',this.customToolbarRef.current)
                 this.connectorLine?.clearConnection()
                 this.customerAnnotationMenuRef?.current?.close()
+                if(id === '4'&&isClick == false){
+                    this.customToolbarRef.current.activeAnnotation(null);
+                }
                 // let ff = this.customToolbarRef.current.currentAnnotation;
                 // console.log("fffffffffffffffffffffffff",ff,isClick,id)
                 // this.isClickFlag = this.isClickFlag + id;
