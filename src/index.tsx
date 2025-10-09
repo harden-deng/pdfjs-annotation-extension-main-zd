@@ -109,7 +109,7 @@ class PdfjsAnnotationExtension {
                 this.customToolbarRef.current.activeAnnotation(annotationDefinitions[0])
             },
             onWebSelectionSelected: range => {
-                console.log('onWebSelectionSelected----问问-2------------>', range)
+                console.log('onWebSelectionSelected----问问-2--标注模式返回一个标注---------->', range)
                 this.customPopbarRef.current.open(range)
             },
             onStoreAdd: (annotation, isOriginal, currentAnnotation) => {
@@ -129,7 +129,7 @@ class PdfjsAnnotationExtension {
                 this.customCommentRef.current.delAnnotation(id)
             },
             onAnnotationSelected: (annotation, isClick, selectorRect) => {
-                console.log('onAnnotationSelected------问问--5--------->', annotation, isClick, selectorRect)
+                console.log('onAnnotationSelected------问问--5--浏览模式------->', annotation, isClick, selectorRect)
                 this.customerAnnotationMenuRef.current.open(annotation, selectorRect)
                 if (isClick && this.isCommentOpen()) {
                     // 如果是点击事件并且评论栏已打开，则选中批注
@@ -576,13 +576,13 @@ class PdfjsAnnotationExtension {
      * @description 初始化 PdfjsAnnotationExtension 类
      */
     private init(): void {
-        this.addCustomStyle()
+        this.addCustomStyle() //默认侧边栏打开
         console.log('init来了---ee11111111111111111111-->',this.config)
-        this.bindPdfjsEvents()
-        this.renderToolbar()
-        this.renderPopBar()
-        this.renderAnnotationMenu()
-        this.renderComment()
+        this.bindPdfjsEvents() //绑定 PDF.js 相关事件
+        this.renderToolbar()  //顶部渲染自定义工具栏
+        this.renderPopBar() //渲染自定义弹出工具条 标注，选色，删除
+        this.renderAnnotationMenu() //渲染自定义弹出工具条 标注，选色，删除
+        this.renderComment() //渲染自定义留言条
     }
 
     /**
