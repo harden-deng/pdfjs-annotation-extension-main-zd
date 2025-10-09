@@ -580,7 +580,7 @@ class PdfjsAnnotationExtension {
         console.log('init来了---ee11111111111111111111-->',this.config)
         this.bindPdfjsEvents() //绑定 PDF.js 相关事件
         this.renderToolbar()  //顶部渲染自定义工具栏
-        this.renderPopBar() //渲染自定义弹出工具条 标注，选色，删除
+        this.renderPopBar() //渲染自定义弹出工具条 标注
         this.renderAnnotationMenu() //渲染自定义弹出工具条 标注，选色，删除
         this.renderComment() //渲染自定义留言条
     }

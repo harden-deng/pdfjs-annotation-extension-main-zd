@@ -155,7 +155,7 @@ const CustomAnnotationMenu = forwardRef<CustomAnnotationMenuRef, CustomAnnotatio
     }
     // 渲染组件
     return (
-        <div className={`CustomAnnotationMenu ${show ? 'show' : 'hide'}`} ref={containerRef}>
+        <div  className={`CustomAnnotationMenu ${show ? 'show' : 'hide'}`} ref={containerRef} style={{ display: 'none' }}>
 
             {/* 渲染样式编辑面板 */}
             {
@@ -227,7 +227,7 @@ const CustomAnnotationMenu = forwardRef<CustomAnnotationMenuRef, CustomAnnotatio
             {/* 渲染操作按钮 */}
             {
                 !showStyle && currentAnnotation && (
-                    <ul className="buttons">
+                    <ul className="buttons" style={{ display: 'none' }}>
                         {/* 注释按钮 */}
                         <li onMouseDown={() => {
                             if (currentAnnotation) {
