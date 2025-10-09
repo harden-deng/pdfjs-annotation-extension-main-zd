@@ -538,7 +538,7 @@ class PdfjsAnnotationExtension {
                 switch (operation.type) {
                     case 'add':
                         if (operation.data) {
-                            this.painter.addAnnotation(operation.data);
+                            // this.painter.addAnnotation(operation.data);
                         }
                         break;
                     case 'update':
@@ -947,7 +947,7 @@ class PdfjsAnnotationExtension {
             const response = await fetch(postUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(dataToSave),
+                body: JSON.stringify({ data: dataToSave }),
             });
             if (!response.ok) {
                 throw new Error(`Failed to save PDF. Status: ${response.status} ${response.statusText}`);

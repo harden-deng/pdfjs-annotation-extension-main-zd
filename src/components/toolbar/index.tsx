@@ -292,6 +292,7 @@ const CustomToolbar = forwardRef<CustomToolbarRef, CustomToolbarProps>(function 
                     </li>
                 )}
             </ul>
+            
             <ul className="buttons right" style={{ display: 'none' }}>
                 <li onClick={() => handleSidebarOpen(sidebarOpen)} className={`${sidebarOpen ? 'selected' : ''}`}>
                     <div className="icon">

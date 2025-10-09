@@ -1,6 +1,7 @@
 const path = require('path')
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')  //在每次构建前清理输出目录（如dist），避免旧文件残留
+
 const environment = require('./configuration/environment')
 
 module.exports = {
@@ -60,7 +61,7 @@ module.exports = {
         ]
     },
     optimization: {
-        minimizer: [
+        minimizer: [   //指定使用 imagemin 作为压缩工具的实现方式
             '...',
             new ImageMinimizerPlugin({
                 minimizer: {
