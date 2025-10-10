@@ -514,7 +514,7 @@ const CustomComment = forwardRef<CustomCommentRef, CustomCommentProps>(function 
     const comments = Object.entries(groupedAnnotations).map(([pageNumber, annotationsForPage]) => {
         // 根据 konvaClientRect.y 对 annotationsForPage 进行排序
         const sortedAnnotations = annotationsForPage.sort((a, b) => a.konvaClientRect.y - b.konvaClientRect.y)
-
+        console.log('sortedAnnotations-----555555555------->', sortedAnnotations)
         return (
             <div key={pageNumber} className="group">
                 <h3>
@@ -566,22 +566,41 @@ const CustomComment = forwardRef<CustomCommentRef, CustomCommentProps>(function 
                                                         setReplyAnnotation(annotation)
                                                     }
                                                 },
-                                                {
-                                                    label: t('normal.edit'),
-                                                    key: '1',
-                                                    onClick: e => {
-                                                        e.domEvent.stopPropagation()
-                                                        setEditAnnotation(annotation)
+                                                // {
+                                                //     label: t('normal.edit'),
+                                                //     key: '1',
+                                                //     onClick: e => {
+                                                //         e.domEvent.stopPropagation()
+                                                //         setEditAnnotation(annotation)
+                                                //     }
+                                                // },
+                                                // {
+                                                //     label: t('normal.delete'),
+                                                //     key: '3',
+                                                //     onClick: e => {
+                                                //         e.domEvent.stopPropagation()
+                                                //         deleteAnnotation(annotation)
+                                                //     }
+                                                // }
+                                                // 只有当前用户可以编辑自己的批注
+                                                ...(annotation.title === props.userName ? [
+                                                    {
+                                                        label: t('normal.edit'),
+                                                        key: '1',
+                                                        onClick: e => {
+                                                            e.domEvent.stopPropagation()
+                                                            setEditAnnotation(annotation)
+                                                        }
+                                                    },
+                                                    {
+                                                        label: t('normal.delete'),
+                                                        key: '3',
+                                                        onClick: e => {
+                                                            e.domEvent.stopPropagation()
+                                                            deleteAnnotation(annotation)
+                                                        }
                                                     }
-                                                },
-                                                {
-                                                    label: t('normal.delete'),
-                                                    key: '3',
-                                                    onClick: e => {
-                                                        e.domEvent.stopPropagation()
-                                                        deleteAnnotation(annotation)
-                                                    }
-                                                }
+                                                ] : [])
                                             ]
                                         }}
                                         trigger={['click']}
@@ -600,25 +619,44 @@ const CustomComment = forwardRef<CustomCommentRef, CustomCommentProps>(function 
                                             <span>{formatPDFDate(reply.date, true)}</span>
                                         </div>
                                         <span className="tool">
-                                            <Dropdown
+                                            {/* <Dropdown
                                                 menu={{
                                                     items: [
-                                                        {
-                                                            label: t('normal.edit'),
-                                                            key: '1',
-                                                            onClick: e => {
-                                                                e.domEvent.stopPropagation()
-                                                                setCurrentReply(reply)
+                                                        // {
+                                                        //     label: t('normal.edit'),
+                                                        //     key: '1',
+                                                        //     onClick: e => {
+                                                        //         e.domEvent.stopPropagation()
+                                                        //         setCurrentReply(reply)
+                                                        //     }
+                                                        // },
+                                                        // {
+                                                        //     label: t('normal.delete'),
+                                                        //     key: '2',
+                                                        //     onClick: e => {
+                                                        //         e.domEvent.stopPropagation()
+                                                        //         deleteReply(annotation, reply)
+                                                        //     }
+                                                        // }
+                                                         // 只有当前用户可以编辑删除自己的回复
+                                                        ...(reply.title != props.userName ? [
+                                                            {
+                                                                label: t('normal.edit'),
+                                                                key: '1',
+                                                                onClick: e => {
+                                                                    e.domEvent.stopPropagation()
+                                                                    setCurrentReply(reply)
+                                                                }
+                                                            },
+                                                            {
+                                                                label: t('normal.delete'),
+                                                                key: '2',
+                                                                onClick: e => {
+                                                                    e.domEvent.stopPropagation()
+                                                                    deleteReply(annotation, reply)
+                                                                }
                                                             }
-                                                        },
-                                                        {
-                                                            label: t('normal.delete'),
-                                                            key: '2',
-                                                            onClick: e => {
-                                                                e.domEvent.stopPropagation()
-                                                                deleteReply(annotation, reply)
-                                                            }
-                                                        }
+                                                        ] : [])
                                                     ]
                                                 }}
                                                 trigger={['click']}
@@ -626,7 +664,36 @@ const CustomComment = forwardRef<CustomCommentRef, CustomCommentProps>(function 
                                                 <span className="icon">
                                                     <MoreOutlined />
                                                 </span>
-                                            </Dropdown>
+                                            </Dropdown> */}
+                                             {reply.title === props.userName && (
+                                                <Dropdown
+                                                    menu={{
+                                                        items: [
+                                                            {
+                                                                label: t('normal.edit'),
+                                                                key: '1',
+                                                                onClick: e => {
+                                                                    e.domEvent.stopPropagation()
+                                                                    setCurrentReply(reply)
+                                                                }
+                                                            },
+                                                            {
+                                                                label: t('normal.delete'),
+                                                                key: '2',
+                                                                onClick: e => {
+                                                                    e.domEvent.stopPropagation()
+                                                                    deleteReply(annotation, reply)
+                                                                }
+                                                            }
+                                                        ]
+                                                    }}
+                                                    trigger={['click']}
+                                                >
+                                                    <span className="icon">
+                                                        <MoreOutlined />
+                                                    </span>
+                                                </Dropdown>
+                                            )}
                                         </span>
                                     </div>
                                     {editReplyInput(annotation, reply)}
