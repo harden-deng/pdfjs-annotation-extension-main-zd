@@ -169,6 +169,7 @@ const CustomToolbar = forwardRef<CustomToolbarRef, CustomToolbarProps>(function 
                         key={index}
                         {...commonProps}
                         onClick={() => handleAnnotationClick(null)}
+                        style={{display: 'flex',width: '99px'}}
                     >
                         <div className="icon">{annotation.icon}</div>
                         <div className="name">{t(`annotations.${annotation.name}`)}</div>
@@ -182,6 +183,7 @@ const CustomToolbar = forwardRef<CustomToolbarRef, CustomToolbarProps>(function 
                         key={index}
                         {...commonProps}
                         onClick={() => handleAnnotationClick(annotation)}
+                        style={{display: 'flex',width: '99px'}}
                     >
                         <div className="icon">{annotation.icon}</div>
                         <div className="name">{t(`annotations.${annotation.name}`)}</div>
@@ -232,7 +234,7 @@ const CustomToolbar = forwardRef<CustomToolbarRef, CustomToolbarProps>(function 
                     </li>
                 </ColorPicker> */}
             </ul>
-            <div className="splitToolbarButtonSeparator" style={{ display: 'none' }}></div>
+            {/* <div className="splitToolbarButtonSeparator" style={{ display: 'none' }}></div>
             <ul className="buttons">
                 {defaultOptions.setting.SAVE_BUTTON && (
                     <li
@@ -300,7 +302,7 @@ const CustomToolbar = forwardRef<CustomToolbarRef, CustomToolbarProps>(function 
                     </div>
                     <div className="name">{t('anno')}</div>
                 </li>
-            </ul>
+            </ul> */}
         </div>
     )
 })

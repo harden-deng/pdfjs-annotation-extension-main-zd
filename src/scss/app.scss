@@ -6,15 +6,16 @@
         z-index: 9 !important;
     }
     #viewerContainer {
-        top: 107px !important; //deng 2025-09-26
+        // top: 107px !important; //deng 2025-09-26
+        top: 32px !important; 
         right: 330px;
     }
     #sidebarContainer {
         top: 107px !important;
     }
     #toolbarContainer {
-        height: 107px;
-        // height: 32px; //deng 2025-09-26
+        // height: 107px;
+        height: 32px; //deng 2025-09-26
     }
     .ant-message {
         z-index: 9999999;

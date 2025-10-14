@@ -19,6 +19,11 @@ module.exports = merge(webpackConfiguration, {
       new TerserPlugin({
         parallel: true, // Enable multi-process parallel running
         terserOptions: {
+          compress: {
+            drop_console: true,     // 移除所有 console.* 调用
+            drop_debugger: true,    // 移除所有 debugger 语句
+            pure_funcs: ['console.log', 'console.info', 'console.debug'] // 额外确保这些被移除
+          },
           format: {
             comments: false, // Remove all comments from the output
           },

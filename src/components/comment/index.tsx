@@ -94,7 +94,7 @@ const { TextArea } = Input
 interface CustomCommentProps {
     userName: string
     onSelected: (annotation: IAnnotationStore) => void
-    onUpdate: (annotation: IAnnotationStore) => void
+    onUpdate: (annotation: IAnnotationStore, val?: number) => void
     onDelete: (id: string) => void
     onScroll?: () => void
     onSave?: () => void
@@ -385,7 +385,7 @@ const CustomComment = forwardRef<CustomCommentRef, CustomCommentProps>(function 
             setCurrentReply(null)
         }
         if (updatedAnnotation) {
-            props.onUpdate(updatedAnnotation)
+            props.onUpdate(updatedAnnotation,2)
         }
     }
 

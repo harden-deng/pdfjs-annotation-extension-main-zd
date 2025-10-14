@@ -695,7 +695,7 @@ class PdfjsAnnotationExtension {
                 // 保存回调函数
                 onSave={() => {
                     // 保存当前数据
-                    this.saveData()
+                    this.saveData(3)
                 }}
                 // 导出回调函数，支持导出为Excel或PDF
                 onExport={async (type) => {
@@ -776,22 +776,29 @@ class PdfjsAnnotationExtension {
                 onSelected={async (annotation) => {
                     await this.painter.highlight(annotation)
                 }}
-                onDelete={(id) => {
-                    this.painter.delete(id)
+                onDelete={async (id) => {
+                    await this.painter.delete(id)
+                     // 保存当前数据
+                    this.saveData(1)
                 }}
-                onUpdate={(annotation) => {
-                    this.painter.update(annotation.id, {
+                onUpdate={async(annotation, val) => {
+                   await this.painter.update(annotation.id, {
                         title: annotation.title,
                         contentsObj: annotation.contentsObj,
                         comments: annotation.comments
                     })
+                    // 保存当前数据
+                   if(val === 2){
+                    // 保存当前数据
+                    this.saveData(2)
+                   }
                 }}
                 onScroll={() => {
                     this.connectorLine?.clearConnection()
                 }}
                 onSave={() => {
                     // 保存当前数据
-                    this.saveData()
+                    this.saveData(3)
                 }}
             />
         )
@@ -868,10 +875,54 @@ class PdfjsAnnotationExtension {
 
         // 监听文档加载完成事件
         this.PDFJS_EventBus._on('documentloaded', async () => {
-            this.painter.initWebSelection(this.$PDFJS_viewerContainer)
+            this.painter.initWebSelection(this.$PDFJS_viewerContainer) 
+            // let array: any[] = [
+            //     {
+            //         "id": "TC_75g_FF_CADGTWOcLkc",
+            //         "pageNumber": 1,
+            //         "konvaString": "{\"attrs\":{\"name\":\"PdfjsAnnotationExtension_shape_group\",\"id\":\"TC_75g_FF_CADGTWOcLkc\"},\"className\":\"Group\",\"children\":[{\"attrs\":{\"x\":89.98956298828126,\"y\":107.32292633056642,\"width\":156,\"height\":12.000000000000002,\"opacity\":0.5,\"fill\":\"#ffff00\"},\"className\":\"Rect\"},{\"attrs\":{\"x\":245.92708740234377,\"y\":107.32292633056642,\"width\":12.000000000000002,\"height\":12.000000000000002,\"opacity\":0.5,\"fill\":\"#ffff00\"},\"className\":\"Rect\"},{\"attrs\":{\"x\":253.24998779296877,\"y\":107.32292633056642,\"width\":252.0000183105469,\"height\":12.000000000000002,\"opacity\":0.5,\"fill\":\"#ffff00\"},\"className\":\"Rect\"},{\"attrs\":{\"x\":89.98956298828126,\"y\":130.97916412353516,\"width\":156,\"height\":12.000000000000002,\"opacity\":0.5,\"fill\":\"#ffff00\"},\"className\":\"Rect\"},{\"attrs\":{\"x\":245.92708740234377,\"y\":129.15625762939453,\"width\":12.000000000000002,\"height\":17.333333587646486,\"opacity\":0.5,\"fill\":\"#ffff00\"},\"className\":\"Rect\"},{\"attrs\":{\"x\":252.89586181640627,\"y\":130.97916412353516,\"width\":36.000002288818365,\"height\":12.000000000000002,\"opacity\":0.5,\"fill\":\"#ffff00\"},\"className\":\"Rect\"},{\"attrs\":{\"x\":288.90626220703126,\"y\":129.15625762939453,\"width\":12.000000000000002,\"height\":17.333333587646486,\"opacity\":0.5,\"fill\":\"#ffff00\"},\"className\":\"Rect\"},{\"attrs\":{\"x\":295.75001220703126,\"y\":130.97916412353516,\"width\":204.0000183105469,\"height\":12.000000000000002,\"opacity\":0.5,\"fill\":\"#ffff00\"},\"className\":\"Rect\"},{\"attrs\":{\"x\":89.98956298828126,\"y\":162.20833282470704,\"width\":108.00000915527345,\"height\":12.000000000000002,\"opacity\":0.5,\"fill\":\"#ffff00\"},\"className\":\"Rect\"},{\"attrs\":{\"x\":197.95836181640627,\"y\":160.38542633056642,\"width\":29.406250762939457,\"height\":17.333333587646486,\"opacity\":0.5,\"fill\":\"#ffff00\"},\"className\":\"Rect\"},{\"attrs\":{\"x\":227.36458740234377,\"y\":160.38542633056642,\"width\":2.697916889190674,\"height\":17.333333587646486,\"opacity\":0.5,\"fill\":\"#ffff00\"},\"className\":\"Rect\"},{\"attrs\":{\"x\":232.17711181640627,\"y\":160.38542633056642,\"width\":78.69401550292969,\"height\":17.333333587646486,\"opacity\":0.5,\"fill\":\"#ffff00\"},\"className\":\"Rect\"},{\"attrs\":{\"x\":310.75001220703126,\"y\":162.20833282470704,\"width\":192.00000000000003,\"height\":12.000000000000002,\"opacity\":0.5,\"fill\":\"#ffff00\"},\"className\":\"Rect\"},{\"attrs\":{\"x\":89.98956298828126,\"y\":185.35418243408205,\"width\":12.000000000000002,\"height\":12.000000000000002,\"opacity\":0.5,\"fill\":\"#ffff00\"},\"className\":\"Rect\"},{\"attrs\":{\"x\":101.94788818359376,\"y\":185.35418243408205,\"width\":12.000000000000002,\"height\":12.000000000000002,\"opacity\":0.5,\"fill\":\"#ffff00\"},\"className\":\"Rect\"},{\"attrs\":{\"x\":112.42708740234376,\"y\":185.35418243408205,\"width\":120.00000915527345,\"height\":12.000000000000002,\"opacity\":0.5,\"fill\":\"#ffff00\"},\"className\":\"Rect\"},{\"attrs\":{\"x\":232.41668701171878,\"y\":185.35418243408205,\"width\":12.000000000000002,\"height\":12.000000000000002,\"opacity\":0.5,\"fill\":\"#ffff00\"},\"className\":\"Rect\"},{\"attrs\":{\"x\":242.83333740234377,\"y\":185.35418243408205,\"width\":132.00000915527346,\"height\":12.000000000000002,\"opacity\":0.5,\"fill\":\"#ffff00\"},\"className\":\"Rect\"},{\"attrs\":{\"x\":374.7916625976563,\"y\":185.35418243408205,\"width\":12.000000000000002,\"height\":12.000000000000002,\"opacity\":0.5,\"fill\":\"#ffff00\"},\"className\":\"Rect\"},{\"attrs\":{\"x\":385.2708618164063,\"y\":185.35418243408205,\"width\":120.00000915527345,\"height\":12.000000000000002,\"opacity\":0.5,\"fill\":\"#ffff00\"},\"className\":\"Rect\"},{\"attrs\":{\"x\":89.98956298828126,\"y\":200.92708282470704,\"width\":36.000002288818365,\"height\":12.000000000000002,\"opacity\":0.5,\"fill\":\"#ffff00\"},\"className\":\"Rect\"}]}",
+            //         "konvaClientRect": {
+            //             "x": 89.98956298828126,
+            //             "y": 107.32292633056642,
+            //             "width": 415.2813079833985,
+            //             "height": 105.60415649414062
+            //         },
+            //         "title": "管理员",
+            //         "type": 1,
+            //         "pdfjsType": 9,
+            //         "pdfjsEditorType": 9,
+            //         "subtype": "Highlight",
+            //         "color": "#ffff00",
+            //         "date": "D:20251010133912+08'00'",
+            //         "contentsObj": {
+            //             "text": "在当今瞬息万变的数字化时代，软件产品的迭代速度与用户需求的匹配度已成为企业竞争力的核心指标。传统“瀑布式”开发模式因周期长、灵活性差，逐渐被更高效的敏捷开发（Agile Development）所取代。敏捷开发不仅是一种方法论，更是一种以用户为中心、快速响应变化的协作文化，正在重塑软件行业的开发范式"
+            //         },
+            //         "comments": [
+            //             {
+            //                 "id": "alndoo-dHIUQQQ7YiGrAq",
+            //                 "title": "管理员",
+            //                 "date": "D:20251010133800+08'00'",
+            //                 "content": "13123123"
+            //             },
+            //             {
+            //                 "id": "_v3ugOgEBvjA1qdfhn4Mz",
+            //                 "title": "管理员",
+            //                 "date": "D:20251010133912+08'00'",
+            //                 "content": "12312"
+            //             }
+            //         ],
+            //         "resizable": false,
+            //         "draggable": false
+            //     }
+            // ];
+            // this.initialDataHash = hashArrayOfObjects(array)
+            // console.log('data来了-->', this.initialDataHash);
+         
+            // await this.painter.initAnnotations(array, defaultOptions.setting.LOAD_PDF_ANNOTATION)
             const data = await this.getData()
             this.initialDataHash = hashArrayOfObjects(data)
-            console.log('data来了-->', this.initialDataHash)
+            console.log('data来了-->', this.initialDataHash);
+         
             await this.painter.initAnnotations(data, defaultOptions.setting.LOAD_PDF_ANNOTATION)
             if (this.loadEnd) {
                 this.updatePdfjs()
@@ -921,7 +972,7 @@ class PdfjsAnnotationExtension {
      * @description 保存批注数据
      * @returns 
      */
-    private async saveData(): Promise<void> {
+    private async saveData(val: number): Promise<void> {
         const dataToSave = this.painter.getData();
         console.log('%c [ dataToSave ]', 'font-size:13px; background:#d10d00; color:#ff5144;', dataToSave);
         console.log('HASH_PARAMS_POST_URL来了-->', HASH_PARAMS_POST_URL)
@@ -935,14 +986,21 @@ class PdfjsAnnotationExtension {
             });
             return;
         }
-        const modal = Modal.info({
-            content: <Space><SyncOutlined spin />{t('save.start')}</Space>,
-            closable: false,
-            okButtonProps: {
-                loading: true
-            },
-            okText: t('normal.ok')
-        })
+        // let isModal = false;
+        // if (val === 3) {
+        //     isModal = true
+        // }
+        let modal: any = null;
+        // if (isModal){
+        //     modal = Modal.info({
+        //         content: <Space><SyncOutlined spin />{t('save.start')}</Space>,
+        //         closable: false,
+        //         okButtonProps: {
+        //             loading: isModal
+        //         },
+        //         okText: t('normal.ok')
+        //     })
+        // }
         try {
             const response = await fetch(postUrl, {
                 method: 'POST',
@@ -955,11 +1013,20 @@ class PdfjsAnnotationExtension {
             const result = await response.json();
             // {"status": "ok", "message": "POST received!"}
             this.initialDataHash = hashArrayOfObjects(dataToSave)
-            modal.destroy()
-            message.success({
-                content: t('save.success'),
-                key: 'save',
-            });
+            if (val === 3) {
+                // modal.destroy() 
+                message.success({
+                    content: t('save.success'),
+                    key: 'save',
+               });
+            }
+            if(val === 1 || val === 2){
+                message.success({
+                    content: t('save.delete'),
+                    key: 'save',
+               });
+            }
+           
             console.log('Saved successfully:', result);
         } catch (error) {
             modal.update({

@@ -75,9 +75,14 @@ export class WebSelection {
                 allSourcesSpan.push(...this.highlighterObj.getDoms(value))
             })
 
-            const pageSelection = Object.groupBy(allSourcesSpan, span => {
-                return span.closest('.page').getAttribute('data-page-number')
-            })
+            // const pageSelection = Object.groupBy(allSourcesSpan, span => {
+            //     return span.closest('.page').getAttribute('data-page-number')
+            // })
+            const pageSelection = allSourcesSpan.reduce((acc: Record<string, HTMLElement[]>, span) => {
+                const key = span.closest('.page')?.getAttribute('data-page-number') || 'unknown';
+                (acc[key] ||= []).push(span);
+                return acc;
+              }, {});
 
             this.onHighlight(pageSelection)
             this.highlighterObj.removeAll()

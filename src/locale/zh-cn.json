@@ -108,6 +108,7 @@
     "save": {
         "start": "正在保存...",
         "success": "保存成功！",
+        "delete": "删除成功！",
         "fail": "保存失败，错误代码： {{value}}",
         "noPostUrl": "未找到参数: {{value}}"
     },
