@@ -310,8 +310,10 @@ const CustomComment = forwardRef<CustomCommentRef, CustomCommentProps>(function 
     }
 
     const handleAnnotationClick = (annotation: IAnnotationStore) => {
+        console.log('handleAnnotationClick------1----------->', annotation)
         setCurrentAnnotation(annotation)
         props.onSelected(annotation)
+       
     }
 
     const updateComment = (annotation: IAnnotationStore, comment: string) => {

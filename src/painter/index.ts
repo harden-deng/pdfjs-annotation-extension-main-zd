@@ -516,7 +516,6 @@ export class Painter {
                 )
                 break
             case AnnotationType.SELECT:
-                debugger
                 console.log('激活选择器------->',pageNumber)
                 this.selector.activate(pageNumber) // 激活选择器
                 break

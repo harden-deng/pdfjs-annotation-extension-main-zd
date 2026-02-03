@@ -75,6 +75,9 @@ class PdfjsAnnotationExtension {
         this.customCommentRef = createRef<CustomCommentRef>()
         // 加载多语言
         initializeI18n(this.PDFJS_PDFViewerApplication.l10n.getLanguage())
+     
+      
+
         // 初始化应用选项
         this.appOptions = {
             [HASH_PARAMS_USERNAME]: i18n.t('normal.unknownUser'), // 默认用户名,
@@ -83,9 +86,16 @@ class PdfjsAnnotationExtension {
             [HASH_PARAMS_DEFAULT_EDITOR_ACTIVE]: defaultOptions.setting.HASH_PARAMS_DEFAULT_EDITOR_ACTIVE,
             [HASH_PARAMS_DEFAULT_SIDEBAR_OPEN]: defaultOptions.setting.HASH_PARAMS_DEFAULT_SIDEBAR_OPEN,
         };
+        // 检查预配置（在初始化应用选项之前）
+        this.checkPreConfiguration();
+         // 如果有预配置的用户名，则覆盖默认值
+        // if (this.config.user?.username) {
+        //     this.appOptions[HASH_PARAMS_USERNAME] = this.config.user.username
+        // }
+
         console.log("初始化应用选项---->",this.appOptions);
         // 处理地址栏参数
-        this.parseHashParams()
+        // this.parseHashParams()  目前关闭，用配置文件代替
         // 创建画笔实例
         this.painter = new Painter({
             userName: this.getOption(HASH_PARAMS_USERNAME),
@@ -96,10 +106,10 @@ class PdfjsAnnotationExtension {
                 // 通过当前引用调用工具栏的activeAnnotation方法
                 // 并传入注释定义数组的第一个元素作为参数
                 console.log('setDefaultMode-问问-1--------------->', annotationDefinitions[0],annotationDefinitions)
-                this.customToolbarRef.current.activeAnnotation(null)
+                this.customToolbarRef.current.activeAnnotation(annotationDefinitions[0])
             },
             onWebSelectionSelected: range => {
-                console.log('onWebSelectionSelected----问问-2------------>', range)
+                console.log('onWebSelectionSelected----问问-2--标注模式返回一个标注---------->', range)
                 this.customPopbarRef.current.open(range)
             },
             onStoreAdd: (annotation, isOriginal, currentAnnotation) => {
@@ -119,7 +129,7 @@ class PdfjsAnnotationExtension {
                 this.customCommentRef.current.delAnnotation(id)
             },
             onAnnotationSelected: (annotation, isClick, selectorRect) => {
-                console.log('onAnnotationSelected------问问--5--------->', annotation, isClick, selectorRect)
+                console.log('onAnnotationSelected------问问--5--浏览模式------->', annotation, isClick, selectorRect)
                 this.customerAnnotationMenuRef.current.open(annotation, selectorRect)
                 if (isClick && this.isCommentOpen()) {
                     // 如果是点击事件并且评论栏已打开，则选中批注
@@ -136,6 +146,9 @@ class PdfjsAnnotationExtension {
                 console.log('onAnnotationChanging------问问---7-------->',this.customToolbarRef.current)
                 this.connectorLine?.clearConnection()
                 this.customerAnnotationMenuRef?.current?.close()
+                if(id === '4'&&isClick == false){
+                    this.customToolbarRef.current.activeAnnotation(null);
+                }
                 // let ff = this.customToolbarRef.current.currentAnnotation;
                 // console.log("fffffffffffffffffffffffff",ff,isClick,id)
                 // this.isClickFlag = this.isClickFlag + id;
@@ -326,9 +339,9 @@ class PdfjsAnnotationExtension {
         if (this.config.user?.defaultEditorActive) {
             this.setOption(HASH_PARAMS_DEFAULT_EDITOR_ACTIVE, this.config.user.defaultEditorActive);
         }
-        if (this.config.user?.defaultSidebarOpen !== undefined) {
-            this.setOption(HASH_PARAMS_DEFAULT_SIDEBAR_OPEN, this.config.user.defaultSidebarOpen.toString());
-        }
+        // if (this.config.user?.defaultSidebarOpen !== undefined) {
+        //     this.setOption(HASH_PARAMS_DEFAULT_SIDEBAR_OPEN, this.config.user.defaultSidebarOpen.toString());
+        // }
     }
 
     /**
@@ -340,6 +353,13 @@ class PdfjsAnnotationExtension {
             this.configure((window as any).pdfjsAnnotationConfig);
         }
     }
+    // private checkPreConfiguration(): void {
+    //     // 检查是否有全局配置
+    //     if ((window as any).pdfjsAnnotationConfig) {
+    //         this.config = { ...this.config, ...(window as any).pdfjsAnnotationConfig };
+    //         this.isConfigured = true;
+    //     }
+    // }
     //-----------------------------------------------------------------------------------end
     //-设置数据变化钩子----------------------------------------------------------------------------------srat
         /**
@@ -556,12 +576,13 @@ class PdfjsAnnotationExtension {
      * @description 初始化 PdfjsAnnotationExtension 类
      */
     private init(): void {
-        this.addCustomStyle()
-        this.bindPdfjsEvents()
-        this.renderToolbar()
-        this.renderPopBar()
-        this.renderAnnotationMenu()
-        this.renderComment()
+        this.addCustomStyle() //默认侧边栏打开
+        console.log('init来了---ee11111111111111111111-->',this.config)
+        this.bindPdfjsEvents() //绑定 PDF.js 相关事件
+        this.renderToolbar()  //顶部渲染自定义工具栏
+        this.renderPopBar() //渲染自定义弹出工具条 标注，选色，删除
+        this.renderAnnotationMenu() //渲染自定义弹出工具条 标注，选色，删除
+        this.renderComment() //渲染自定义留言条
     }
 
     /**
